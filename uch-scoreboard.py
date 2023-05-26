@@ -11,8 +11,8 @@ from PyQt5.QtWidgets import *
 
 P1 = "Player1"
 P2 = "Player2"
-POINTS_TO_WIN = 2
 ROUND_LIMIT = 10
+POINTS_TO_WIN = 2
 FONT = "Roboto"
 
 # --------------------------------------------------------------------------------------------------- #
@@ -38,6 +38,7 @@ class Window(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.resize(800, 200)
         self.setWindowTitle("UCH Scoreboard")
+        self.oldPos = QPoint(500, 500)
 
         self.gameNr = 1
         self.roundNr = 1
@@ -102,18 +103,14 @@ class Window(QWidget):
         formatText(self.textHead, [0, 15], headText, WHITE, 25)
 
     def endGame(self):
-        # Update scores
         if self.p1GameScore > self.p2GameScore:
             self.p1SetScore += 1
         else:
             self.p2SetScore += 1
         self.p1GameScore = 0
         self.p2GameScore = 0
-        
-        # Update rounds
         self.gameNr += 1
         self.roundNr = 1
-
         self.updateScoreboard()
 
     def p1Scored(self):
