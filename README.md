@@ -1,1 +1,1 @@
-# uch-scoreboard
+# UCH Scoreboard
